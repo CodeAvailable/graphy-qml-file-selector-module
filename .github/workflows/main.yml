@@ -24,9 +24,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: install packages
-        run: sudo apt install -y conan git cmake gcc g++ 
+        run: sudo apt install -y wget git cmake gcc g++ 
       - name: bintray setup
-        run: conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan 
+        run: |
+              wget https://dl.bintray.com/conan/installers/conan-ubuntu-64_1_31_2.deb
+              dpkg -i conan-ubuntu-64_1_31_2.deb
+              conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan 
 
       # Runs a set of commands using the runners shell
       - name: build & run
